@@ -1,0 +1,23 @@
+{
+    "type": "gpii.iodServer.config.gcloud",
+    "options": {
+        "components": {
+            "iodServer": {
+                "type": "kettle.server",
+                "options": {
+                    "components": {
+                        "packageServer": {
+                            "type": "gpii.iodServer.packageServer"
+                        }
+                    }
+                }
+            }
+        },
+        "distributeOptions": {
+            "packageDataSource": {
+                "target": "{that gpii.iodServer.packageDataSource}.options.packageDirectory",
+                "record": "%gpii-iod-server/packages"
+            }
+        }
+    }
+}
