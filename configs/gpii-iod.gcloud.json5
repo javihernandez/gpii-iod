@@ -5,18 +5,29 @@
             "iodServer": {
                 "type": "kettle.server",
                 "options": {
+                    "port": "@expand:kettle.resolvers.env(IOD_PORT)",
                     "components": {
                         "packageServer": {
-                            "type": "gpii.iodServer.packageServer"
+                            "type": "gpii.iodServer.packageServer",
+                            "options": {
+                                "components": {
+                                    "packageDataSource": {
+                                        "type": "gpii.iodServer.packageDataSource",
+                                        "options": {
+                                            "packageDirectory": "%gpii-iod-server/testData/packages"
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
         },
         "distributeOptions": {
-            "packageDataSource": {
+            "packageDataSourceFromEnv": {
                 "target": "{that gpii.iodServer.packageDataSource}.options.packageDirectory",
-                "record": "%gpii-iod-server/packages"
+                "record": "@expand:kettle.resolvers.env(IOD_PACKAGES_FOLDER)"
             }
         }
     }
