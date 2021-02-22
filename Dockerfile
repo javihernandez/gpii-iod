@@ -10,6 +10,6 @@ RUN apk add --no-cache --virtual git && \
 
 USER node
 
-EXPOSE 8084
+EXPOSE 8081
 
 CMD ["npm","start"]
